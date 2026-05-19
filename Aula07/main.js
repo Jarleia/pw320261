@@ -9,7 +9,7 @@ const SECRET = "pw32026"
 const cors = require('cors')
 
 app.use((req, res, next) => {
- // res.header('Access-Control-Allow-Origin', '*'); // Seu frontend
+  res.header('Access-Control-Allow-Origin', '*'); // Seu frontend
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.header('Access-Control-Allow-Credentials', 'true');
@@ -74,29 +74,29 @@ app.post('/v1/usuario/findbyparam', userController.findByParm)
 
 
 //FORNECEDOR
-app.post("/fornecedor/create", fornecedorController.create);
-app.get("/fornecedor/all", fornecedorController.getAll);
-app.get("/fornecedor/:id", fornecedorController.getById);
-app.delete("/fornecedor/delete/:id", fornecedorController.delete);
-app.put("/fornecedor/:id", fornecedorController.update);
+app.post("/v1/fornecedor/create", fornecedorController.create);
+app.get("/v1/fornecedor/all", fornecedorController.getAll);
+app.get("/v1/fornecedor/:id", fornecedorController.getById);
+app.delete("/v1/fornecedor/delete/:id", fornecedorController.delete);
+app.put("/v1/fornecedor/:id", fornecedorController.update);
 
-app.post('/produto/create', produtoController.create)
-app.get("/produto/all", produtoController.findAll)
-app.get("/produto/byid/:id", produtoController.findById)
-app.get("/produto/delete/:id",produtoController.delete)
-app.post("/produto/update/:id", produtoController.upadate)
+app.post('/v1/produto/create', produtoController.create)
+app.get("/v1/produto/all", produtoController.findAll)
+app.get("/v1/produto/byid/:id", produtoController.findById)
+app.get("/v1/produto/delete/:id",produtoController.delete)
+app.post("/v1/produto/update/:id", produtoController.upadate)
 
-app.post('/cliente/create', clienteController.create);
-app.get("/cliente/all",clienteController.findAll);
-app.get("/cliente/byid/:id", clienteController.findById);
-app.get("/cliente/delete/:id", clienteController.delete)
-app.post('/cliente/update/:id', clienteController.update )
+app.post('/v1/cliente/create', clienteController.create);
+app.get("/v1/cliente/all",clienteController.findAll);
+app.get("/v1/cliente/byid/:id", clienteController.findById);
+app.get("/v1/cliente/delete/:id", clienteController.delete)
+app.post('/v1/cliente/update/:id', clienteController.update )
 
-app.post('/tipoproduto/create',tipoController.create)
-app.get("/tipoproduto/all",tipoController.findAll)
-app.get("/tipoproduto/byid/:id",tipoController.findByid)
-app.get("/tipoproduto/delete/:id", tipoController.delete)
-app.post('/tipoproduto/update/:id', tipoController.update)
+app.post('/v1/tipoproduto/create',tipoController.create)
+app.get("/v1/tipoproduto/all",tipoController.findAll)
+app.get("/v1/tipoproduto/byid/:id",tipoController.findByid)
+app.get("/v1/tipoproduto/delete/:id", tipoController.delete)
+app.post('/v1/tipoproduto/update/:id', tipoController.update)
 
 app.listen(3000,()=>{
 
