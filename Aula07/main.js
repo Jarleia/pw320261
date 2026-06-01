@@ -62,7 +62,7 @@ const tipoController = require("./controllers/TipoProdutoController");
 const produtoController = require("./controllers/ProdutoController");
 const fornecedorController = require("./controllers/FornecedorController")
 const clienteController = require("./controllers/ClienteController")
-
+const servicoController = require("./controllers/ServicoController")
 
 app.post('/v1/usuario/login', userController.login)
 app.post('/v1/usuario/create', userController.create)
@@ -97,6 +97,12 @@ app.get("/v1/tipoproduto/all",tipoController.findAll)
 app.get("/v1/tipoproduto/byid/:id",tipoController.findByid)
 app.get("/v1/tipoproduto/delete/:id", tipoController.delete)
 app.post('/v1/tipoproduto/update/:id', tipoController.update)
+
+app.post('/v1/servico/create', servicoController.create)
+app.get("/v1/servico/all", servicoController.findAll)
+app.get("/v1/servico/byid/:id", servicoController.findById)
+app.delete("/v1/servico/delete/:id", servicoController.delete)
+app.put("/v1/servico/update/:id", servicoController.update)
 
 app.listen(3000,()=>{
 
