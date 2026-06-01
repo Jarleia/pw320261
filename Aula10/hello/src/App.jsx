@@ -16,6 +16,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard/>}></Route>
           <Route path="/user/create" element={<User/>}></Route>
            <Route path="/produtos" element={<Produtos/>}></Route>
+           <Route path="/clientes" element={<Clientes/>}></Route>
           <Route path="*" element={<PageNoteFound/>}></Route>
         </Routes>
       </BrowserRouter>
