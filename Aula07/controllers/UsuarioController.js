@@ -1,41 +1,5 @@
 const { where, Op } = require("sequelize");
 const Usuario = require("../models/Usuario");
-const jwt = require('jsonwebtoken')
-const brcypt = require('bcryptjs')
-const SECRET = "pw32026"
-
-exports.login = 
-async (req, res) => {
-    try {
-        const {email, senha} =  req.body;
-
-        if (!email || !senha){
-            return res.status(400).send({ms:"dado incompleto"},400);
-        }
-
-        const user = await Usuario.findOne({
-            where:{
-                email:email
-            }
-        });
-
-        if (!user){
-            return res.status(404).send({ms:"usuario nao existe"}, 400);
-        }
-
-        const senhaValida = await brcypt.compare(senha, user.senha)
-        if  (!senhaValida){
-             return res.status(401).send({ms:"senha inválida"}, 400);
-        }
-        const token= jwt.sign({id: user.id}, SECRET,{ expiresIn:"1h"});
-
-       // console.log(user)
-        return res.send({ token: token }, 200)
-    } catch (error) {
-        console.log(error)
-        return res.status(400).send({ mg: "Erro no banco de dados" }, 400)
-    }
-}
 
 exports.findAll = async (req, res) => {
     try {
@@ -64,12 +28,18 @@ exports.findByParm = async (req, res) => {
         }
         const offset = (page - 1) * limit;
 
+        const result = await Usuario.findAndCountAll({
+            where,
+            limit: parseInt(limit),
+            offset: parseInt(offset)
+        });
+
         const all = await Usuario.findAll({
             where: where,
             limit: parseInt(limit),
             offset: parseInt(offset)
         });
-        return res.send({ usuarios: all }, 200)
+        return res.send({ total: result.count, usuarios: all }, 200)
     } catch (error) {
         console.log(error)
         return res.status(400).send({ mg: "Erro no banco de dados" }, 400)
@@ -109,15 +79,14 @@ exports.delete = async (req, res) => {
 
 exports.create = async (req, res) => {
     try {
-        const { nome, email, mensagem, senha } = req.body;
+        const { nome, email, mensagem } = req.body;
 
-       const senhaCrip = await brcypt.hash(senha, 10);
-        console.log(senhaCrip);
-
+        if (!nome || !email || !mensagem) {
+            return res.status(400).send({ mg: "dados incompletos" }, 400)
+        }
         const user = await Usuario.create({
             nome: nome, email: email,
-            mensagem: mensagem,
-            senha:senhaCrip
+            mensagem: mensagem
         })
         res.send({ mg: "salvo com sucesso", user: user }, 201)
     } catch (error) {
@@ -133,7 +102,6 @@ exports.update = async (req, res) => {
     try {
         const { id } = req.params;
         const userv = await Usuario.findByPk(id);
-       
 
         if (!userv) {
             return res.status(404).send({ mg: "usuario não encontrado" });
