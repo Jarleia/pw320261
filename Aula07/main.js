@@ -3,7 +3,7 @@ const app = express();
 const {DataTypes} = require('sequelize');
 const {sequelize} = require('./config/index');
 const jwt = require('jsonwebtoken')
-const brcypt = require('bcrypt')
+const brcypt = require('bcryptjs')
 const SECRET = "pw32026"
 
 const cors = require('cors')
