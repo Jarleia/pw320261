@@ -1,7 +1,7 @@
 const { where, Op } = require("sequelize");
 const Usuario = require("../models/Usuario");
 const jwt = require('jsonwebtoken')
-const brcypt = require('bcrypt')
+const brcypt = require('bcryptjs')
 const SECRET = "pw32026"
 
 exports.login = 
