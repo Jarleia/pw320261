@@ -9,7 +9,6 @@ import NotFound from "./NotFound";
 function App() {
   return (
     <BrowserRouter>
-      <Menu />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<DashBoard />} />
