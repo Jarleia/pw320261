@@ -18,6 +18,7 @@ function Menu( {page} ) {
         <Link to="/" onClick="/" >Login</Link>
         <Link to="/dashboard" className={page === "Dashboard" ? "active" : ""}>Dashboard</Link>
         <Link to="/user/create"  className={page === "Users" ? "active" : ""} >User</Link>
+        <Link to="/clientes/create"  className={page === "Clientes" ? "active" : ""} >Clientes</Link>
         <Link to="/produtos"  className={page === "Produtos" ? "active" : ""}>Produtos</Link>
       </div>
    
