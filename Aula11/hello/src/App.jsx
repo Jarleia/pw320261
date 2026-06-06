@@ -3,7 +3,6 @@ import Login from "./Login"
 import Dashboard from "./DashBoard"
 import PageNoteFound from "./NotFound"
 import User from "./User"
-import Produtos from "./Produtos"
 
 function App() {
   
@@ -15,8 +14,6 @@ function App() {
           <Route path="/" element={<Login/>}></Route>
           <Route path="/dashboard" element={<Dashboard/>}></Route>
           <Route path="/user/create" element={<User/>}></Route>
-           <Route path="/produtos" element={<Produtos/>}></Route>
-           <Route path="/clientes" element={<Clientes/>}></Route>
           <Route path="*" element={<PageNoteFound/>}></Route>
         </Routes>
       </BrowserRouter>
